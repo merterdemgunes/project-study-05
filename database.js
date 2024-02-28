@@ -7,14 +7,14 @@ import env from "dotenv";
 import cors from 'cors';
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const saltRounds = 10;
 env.config();
 
 app.use(bodyParser.json());
 app.use(cors());
-
-const db = new pg.Client({
+//Client
+const db = new pg.Pool({
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
   database: process.env.PG_DATABASE,
