@@ -15,11 +15,11 @@ app.use(bodyParser.json());
 app.use(cors());
 //Client
 const db = new pg.Pool({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  database: process.env.PG_DATABASE,
-  password: process.env.PG_PASSWORD,
-  port: process.env.PG_PORT,
+  user: "database_myportfolio_user",
+  host: "dpg-cnfkug0cmk4c73avqm6g-a",
+  database: "database_myportfolio",
+  password: "M2X814WGaqSBpPXCtgTr5djjNqPQTX8E",
+  port: "5432",
 });
 db.connect();
 
