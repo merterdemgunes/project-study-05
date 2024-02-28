@@ -21,7 +21,7 @@ const ProjectCardData = [
         imgsrc: "https://cupofcode.blog/wp-content/uploads/2023/08/2.png",
         title: "My Portfolio Web Site",
         detail: "I built this web site using React.js and Node.js, featuring essential functionalities such as user authentication with login and registration capabilities. With dedicated pages for showcasing my projects, providing information about me, and facilitating contact.",
-        source: "https://github.com/merterdemgunes"
+        source: "https://github.com/merterdemgunes/project-study-05"
     },
     {
         imgsrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Graph_comparison.jpg/220px-Graph_comparison.jpg",
