@@ -38,22 +38,21 @@ app.get('/login', async (req, res) => {
 
 app.get("/register", async (req, res) => {
   try {
-    const email = "abc@abc"; // Predefined email address
-    const password = "somepassword"; // Predefined password
+    // Define the data to be inserted
+    const userData = {
+      name: 'John Doe',
+      email: 'john@example.com',
+      age: 30
+    };
 
-    // Hash the password before storing it in the database
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    // Insert the user into the database
-    await db.query(
-      "INSERT INTO users (email, password) VALUES ($1, $2)",
-      [email, hashedPassword]
-    );
+    // Execute the INSERT query
+    await db.query('INSERT INTO users (name, email, age) VALUES ($1, $2, $3)', 
+      [userData.name, userData.email, userData.age]);
 
     return res.json({ success: true, message: 'Registration successful' });
   } catch (error) {
     console.error('Error registering user:', error);
-    return res.status(500).json({ success: false, message: error.message });
+    return res.status(500).json({ success: false, message: 'Server error' });
   }
 });
 
