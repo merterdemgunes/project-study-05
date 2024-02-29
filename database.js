@@ -23,7 +23,7 @@ const db = new pg.Pool({
 });
 db.connect();
 
-app.get('/login', (req, res) => {
+app.get('/login', async (req, res) => {
   try {
     const result = await db.query('SELECT email FROM users');
     const emails = result.rows.map(row => row.email);
