@@ -38,32 +38,24 @@ app.get('/login', async (req, res) => {
 app.get("/register", async (req, res) => {
   try {
     const email = "abc@abc"; // Predefined email address
-    const password = "somepassword"; // You can generate a random password here or use a predefined one
+    const password = "somepassword"; // Predefined password
 
-    // Check if the email already exists in the database
-    const checkResult = await db.query("SELECT * FROM users WHERE email = $1", [
-      email,
-    ]);
+    // Hash the password before storing it in the database
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    if (checkResult.rows.length > 0) {
-      return res.json({ success: false, message: 'Email already exists. Try logging in.' });
-    } else {
-      // Hash the password before storing it in the database
-      const hashedPassword = await bcrypt.hash(password, saltRounds);
+    // Insert the user into the database
+    await db.query(
+      "INSERT INTO users (email, password) VALUES ($1, $2)",
+      [email, hashedPassword]
+    );
 
-      // Insert the user into the database
-      await db.query(
-        "INSERT INTO users (email, password) VALUES ($1, $2)",
-        [email, hashedPassword]
-      );
-
-      return res.json({ success: true, message: 'Registration successful' });
-    }
+    return res.json({ success: true, message: 'Registration successful' });
   } catch (error) {
     console.error('Error registering user:', error);
-    return res.status(500).json({ success: false, message: 'Server error' });
+    return res.status(500).json({ success: false, message: error.message });
   }
 });
+
 
 
 app.post("/register", async (req, res) => {
