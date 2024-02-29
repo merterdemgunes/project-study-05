@@ -23,6 +23,18 @@ const db = new pg.Pool({
 });
 db.connect();
 
+app.get('/login', (req, res) => {
+  // Handle GET request to '/login' route
+  // This could be a redirect to your login page or some other response
+  res.send('Login page');
+});
+
+app.get('/register', (req, res) => {
+  // Handle GET request to '/login' route
+  // This could be a redirect to your login page or some other response
+  res.send('Register page');
+});
+
 app.post("/register", async (req, res) => {
 
   const { email, password } = req.body;
