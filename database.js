@@ -26,7 +26,7 @@ db.connect();
 
 app.get('/login', async (req, res) => {
   try {
-    const result = await db.query('SELECT email FROM users');
+    const result = await db.query('SELECT email FROM user_data');
     const emails = result.rows.map(row => row.email);
     res.send(emails);
   } catch (error) {
