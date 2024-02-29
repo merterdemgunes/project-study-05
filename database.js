@@ -135,7 +135,7 @@ app.listen(port, () => {
 import nodemailer from 'nodemailer';
 
 const app1 = express();
-const port1 = 3001;
+const port1 = process.env.PG_PORT || 3001;
 
 app1.use(bodyParser.json());
 app1.use(cors());
