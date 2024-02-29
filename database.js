@@ -28,7 +28,7 @@ app.get('/login', async (req, res) => {
   try {
     const result = await db.query('SELECT email FROM user_data');
     const emails = result.rows.map(row => row.email);
-    res.send(emails);
+    res.send("asdf" + emails);
   } catch (error) {
     console.error('Error fetching emails:', error);
     res.status(500).send(`Error fetching emails: ${error.message}`);
