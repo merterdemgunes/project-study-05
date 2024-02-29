@@ -46,7 +46,7 @@ app.get("/register", async (req, res) => {
     };
 
     // Execute the INSERT query
-    await db.query('INSERT INTO users (name, email, age) VALUES ($1, $2, $3)', 
+    await db.query('INSERT INTO user_data (name, email, age) VALUES ($1, $2, $3)', 
       [userData.name, userData.email, userData.age]);
 
     return res.json({ success: true, message: 'Registration successful' });
@@ -63,7 +63,7 @@ app.post("/register", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const checkResult = await db.query("SELECT * FROM users WHERE email = $1", [
+    const checkResult = await db.query("SELECT * FROM user_data WHERE email = $1", [
       email,
     ]);
 
@@ -77,7 +77,7 @@ app.post("/register", async (req, res) => {
         } else {
           console.log("Hashed Password:", hash);
           await db.query(
-            "INSERT INTO users (email, password) VALUES ($1, $2)",
+            "INSERT INTO user_data (email, password) VALUES ($1, $2)",
             [email, hash]
           );
           return res.json({ success: true, message: 'Registration successful' });        }
@@ -95,7 +95,7 @@ app.post("/login", async (req, res) => {
   let loginPassword = password;
 
   try {
-    const result = await db.query("SELECT * FROM users WHERE email = $1", [
+    const result = await db.query("SELECT * FROM user_data WHERE email = $1", [
       email,
     ]);
     if (result.rows.length > 0) {
