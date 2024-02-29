@@ -24,9 +24,14 @@ const db = new pg.Pool({
 db.connect();
 
 app.get('/login', (req, res) => {
-  // Handle GET request to '/login' route
-  // This could be a redirect to your login page or some other response
-  res.send('Login page');
+  try {
+    const result = await db.query('SELECT email FROM users');
+    const emails = result.rows.map(row => row.email);
+    res.json(emails);
+  } catch (error) {
+    console.error('Error fetching emails:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
 });
 
 app.get('/register', (req, res) => {
