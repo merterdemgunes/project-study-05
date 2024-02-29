@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+//const response = await axios.post('http://localhost:3000/register', { email, password });
+
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -16,7 +18,7 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:3000/register', { email, password });
+            const response = await axios.post('https://project-study-05.onrender.com/register', { email, password });
             setMessage(response.data.message);
             if(response.data.success){
               navigateTo("/login");
