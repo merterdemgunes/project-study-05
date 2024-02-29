@@ -21,13 +21,20 @@ const db = new pg.Pool({
   password: "M2X814WGaqSBpPXCtgTr5djjNqPQTX8E",
   port: "5432",
 });
+
+
 db.connect((err) => {
   if (err) {
-    console.log('Error connecting to the database:', err);
+    console.error('Error connecting to the database:', err);
+    alert('Error connecting to the database. Please try again later.');
   } else {
     console.log('Connected to the database');
+    alert('Successfully connected to the database!');
   }
 });
+
+
+
 app.get('/login', async (req, res) => {
   try {
     const result = await db.query('SELECT email FROM users');
