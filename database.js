@@ -140,7 +140,7 @@ const port1 = process.env.PG_PORT || 3001;
 app1.use(bodyParser.json());
 app1.use(cors());
 
-app1.post('/contact', (req, res) => {
+app.post('/contact', (req, res) => {
     const { to, subject, text } = req.body;
 
     const transporter = nodemailer.createTransport({
