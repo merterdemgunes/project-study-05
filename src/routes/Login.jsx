@@ -5,6 +5,9 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+//const response = await axios.post('http://localhost:3000/login', { email, password });
+
+
 const Login = ({ setAuth }) => {
 
     const [email, setEmail] = useState('');
@@ -16,7 +19,7 @@ const Login = ({ setAuth }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('http://localhost:3000/login', { email, password });
+          const response = await axios.post('https://project-study-05.onrender.com/login', { email, password });
           setMessage(response.data.message);
           if(response.data.success){
             setAuth({ token: true });
