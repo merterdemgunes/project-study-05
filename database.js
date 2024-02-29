@@ -30,9 +30,10 @@ app.get('/login', async (req, res) => {
     res.send(emails);
   } catch (error) {
     console.error('Error fetching emails:', error);
-    res.send("error");
+    res.status(500).send(`Error fetching emails: ${error.message}`);
   }
 });
+
 
 app.get('/register', (req, res) => {
   // Handle GET request to '/login' route
