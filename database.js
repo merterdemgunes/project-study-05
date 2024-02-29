@@ -27,10 +27,10 @@ app.get('/login', (req, res) => {
   try {
     const result = await db.query('SELECT email FROM users');
     const emails = result.rows.map(row => row.email);
-    res.json(emails);
+    res.send(emails);
   } catch (error) {
     console.error('Error fetching emails:', error);
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.send("error");
   }
 });
 
