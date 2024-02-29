@@ -22,18 +22,7 @@ const db = new pg.Pool({
   port: "5432",
 });
 
-
-db.connect((err) => {
-  if (err) {
-    console.error('Error connecting to the database:', err);
-    alert('Error connecting to the database. Please try again later.');
-  } else {
-    console.log('Connected to the database');
-    alert('Successfully connected to the database!');
-  }
-});
-
-
+db.connect();
 
 app.get('/login', async (req, res) => {
   try {
