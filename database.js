@@ -24,39 +24,9 @@ const db = new pg.Pool({
 
 db.connect();
 
-app.get('/login', async (req, res) => {
-  try {
-    const result = await db.query('SELECT email FROM user_data');
-    const emails = result.rows.map(row => row.email);
-    res.send("asdf" + emails);
-  } catch (error) {
-    console.error('Error fetching emails:', error);
-    res.status(500).send(`Error fetching emails: ${error.message}`);
-  }
+app.get('/contact', async (req, res) => {
+    res.send("updated");
 });
-
-
-app.get("/register", async (req, res) => {
-  try {
-    // Define the data to be inserted
-    const userData = {
-      name: 'John Doe',
-      email: 'john@example.com',
-      age: 30
-    };
-
-    // Execute the INSERT query
-    await db.query('INSERT INTO user_data (name, email, age) VALUES ($1, $2, $3)', 
-      [userData.name, userData.email, userData.age]);
-
-    return res.json({ success: true, message: 'Registration successful' });
-  } catch (error) {
-    console.error('Error registering user:', error);
-    return res.status(500).json({ success: false, message: 'Server error' });
-  }
-});
-
-
 
 app.post("/register", async (req, res) => {
 
