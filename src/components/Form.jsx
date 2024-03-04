@@ -13,7 +13,7 @@ const Form = () => {
         e.preventDefault();
 
         try {
-            await axios.post('http://localhost:3001/contact', {
+            await axios.post('https://project-study-05.onrender.com/contact', {
                 to: to,
                 subject: subject,
                 text: 
@@ -30,7 +30,7 @@ const Form = () => {
 
         //-----------------------TO MYSELF !
         try {
-            await axios.post('http://localhost:3001/contact', {
+            await axios.post('https://project-study-05.onrender.com/contact', {
                 to: import.meta.env.VITE_MY_EMAIL,
                 subject: subject,
                 text: "Name: " + name + "\n" +
